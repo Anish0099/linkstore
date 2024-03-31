@@ -1,4 +1,4 @@
-import {PutObjectCommand, S3Client} from "@aws-sdk/client-s3";
+import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import uniqid from "uniqid";
 
 export async function POST(req) {
@@ -8,7 +8,7 @@ export async function POST(req) {
     const file = formData.get('file');
 
     const s3Client = new S3Client({
-      region: 'us-east-1',
+      region: 'eu-north-1',
       credentials: {
         accessKeyId: process.env.S3_ACCESS_KEY,
         secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
@@ -36,6 +36,7 @@ export async function POST(req) {
     const link = `https://${bucketName}.s3.amazonaws.com/${newFilename}`;
 
     return Response.json(link);
+
 
   }
 }
